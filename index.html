@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +8,31 @@
   <script src="script.js" defer></script>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+  <dialog id="add-book">
+    <div class="form-container">
+      <form id="new-book">
+        <label for="title">Title: </label>
+        <input type="text" id="title" name="title">
+        <label for="author">Author: </label>
+        <input type="text" id="author" name="author">
+        <label for="pages">Pages: </label>
+        <input type="pages" id="pages" name="pages">
+        <label for="isRead">Already read? </label>
+        <input type="checkbox" id="isRead" name="isRead">
+        <button id="closeBtn" type="submit">Close</button>
+      </form>
+    </div>
+  </dialog>
+
   <div class="container">
-    <!-- <div class="card">
-      <div class="title">Game</div>
-      <div class="author">RR </div>
-      <div class="pages">122</div>
-      <div class="isRead">Not read</div>
-    </div> -->
-    
   </div>
+  <div class="button-container">
+    <button class="add-books">Add more books</button>
+  </div>
+
 </body>
+
 </html>

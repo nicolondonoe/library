@@ -91,25 +91,85 @@ body {
 }
 
 .container {
-  height: 100%;
   display: grid;
   gap: 10px;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   padding: 10px;
-  align-content: center;
 }
 
 .card {
   background-color: var(--alabaster-grey);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.356);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.158);
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 10px;
   border-radius: 15px;
+  position: relative;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 10px;
+  background-color: var(--dusk-blue);
+  top: 0;
+  left: 0;
+  border-radius: 15px 0 0 15px;
 }
 
 .card > div {
   color: var(--prussian-blue);
+  position: relative;
 }
+
+.button-container {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  border: none;
+  background-color: var(--dusk-blue);
+  color: var(--alabaster-grey);
+  padding-inline: 30px;
+  padding-block: 15px;
+  border-radius: 12px;
+  font-weight: bold;
+  transition: transform 0.5s ease;
+}
+
+button:hover, button:focus {
+  transform: scale(1.06);
+  cursor: pointer;
+}
+
+dialog {
+  border: 3px solid var(--dusk-blue);
+  background-color: var(--alabaster-grey);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+form {
+  display: grid;
+  gap: 10px;
+}
+
+input[type="checkbox"] {
+  justify-self: start;
+}
+
+/* .closeBtn {
+  margin-top: 10px;
+} */
+.darken {
+  opacity: 20%;
+}
+
+
+
+
 

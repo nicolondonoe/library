@@ -1,6 +1,13 @@
 const myLibrary = [];
 const container = document.querySelector("div.container");
 const cards = [];
+const addBooksButton = document.querySelector("button.add-books");
+const body = document.querySelector("body");
+
+const dialog = document.getElementById('add-book');
+closeBtn.addEventListener('click', () => dialog.close());
+
+addBooksButton.addEventListener("click", () => dialog.showModal());
 
 
 function Book(title, author, pages, isRead) {
@@ -55,6 +62,10 @@ function displayBooks() {
     cards[i].pages.textContent = `${myLibrary[i].pages} pages long`;
     cards[i].isRead.textContent = `${myLibrary[i].isRead ? 'Read' : 'Unread'}` ;
   }
+}
+
+function userAddBooks(e) {
+  body.classList.toggle("darken");
 }
 
 displayBooks(myLibrary);
