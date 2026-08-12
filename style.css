@@ -90,11 +90,22 @@ body {
   background-color: var(--ink-black);
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: stretch;
+  justify-content: center;
+}
+
 .container {
   display: grid;
   gap: 10px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(266px, 1fr));
   padding: 10px;
+  margin-inline: 20vw;
+  /* height: 100%;
+  align-content: center; */
 }
 
 .card {
@@ -106,6 +117,7 @@ body {
   padding: 10px;
   border-radius: 15px;
   position: relative;
+  transition: transform 0.2s ease;
 }
 
 .card::before {
@@ -119,14 +131,20 @@ body {
   border-radius: 15px 0 0 15px;
 }
 
+.card:hover {
+  transform: scale(1.02);
+}
+
 .card > div {
   color: var(--prussian-blue);
   position: relative;
 }
 
 .button-container {
-  margin-top: 15px;
   display: flex;
+  flex: 0 1 auto;
+  margin-inline: 20vw;
+  padding: 10px;
   justify-content: center;
 }
 
@@ -141,6 +159,13 @@ button {
   transition: transform 0.5s ease;
 }
 
+/* button.add-books {
+  grid-column: 1 / span 2;
+  grid-row: last;
+  width: max-content;
+  justify-self: center;
+} */
+
 button:hover, button:focus {
   transform: scale(1.06);
   cursor: pointer;
@@ -153,20 +178,40 @@ dialog {
   padding: 20px;
 }
 
-form {
-  display: grid;
-  gap: 10px;
+dialog::backdrop {
+  backdrop-filter: blur(2px);
+}
+
+input[type="text"], input[type="number"] {
+  outline: none;
+  border: none;
+  background-color: rgb(180, 180, 180);
+  border-radius: 12px;
+  padding-left: 10px;
 }
 
 input[type="checkbox"] {
+  border-radius: 12px;
+}
+
+#new-book {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: auto 1fr;
+
+}
+
+#new-book label {
+  grid-column: 1 / 2;
+}
+
+#new-book #isRead {
   justify-self: start;
 }
 
-/* .closeBtn {
-  margin-top: 10px;
-} */
-.darken {
-  opacity: 20%;
+#new-book #closeBtn {
+  grid-column: 1 / span 2;
+
 }
 
 
