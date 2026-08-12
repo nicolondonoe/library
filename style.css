@@ -81,6 +81,7 @@ h6 {
   --dusk-blue: #415a77ff;
   --dusty-denim: #778da9ff;
   --alabaster-grey: #e0e1ddff;
+  --remove-red: rgb(179, 39, 39);
 
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
@@ -157,6 +158,11 @@ button {
   border-radius: 12px;
   font-weight: bold;
   transition: transform 0.5s ease;
+}
+
+button.remove {
+  background-color: var(--remove-red);
+  scale: 0.8;
 }
 
 /* button.add-books {

@@ -7,6 +7,7 @@ const form = document.forms.newBook;
 const closeBtn = document.querySelector("#closeBtn");
 const dialog = document.getElementById('add-book');
 
+
 closeBtn.addEventListener('click', (e) => {
   e.preventDefault();
   let title = form.title.value;
@@ -21,6 +22,7 @@ closeBtn.addEventListener('click', (e) => {
 });
 
 addBooksButton.addEventListener("click", () => dialog.showModal());
+
 
 
 function Book(title, author, pages, isRead) {
@@ -47,15 +49,27 @@ function Card() {
   this.pages = document.createElement("div");
   this.isRead = document.createElement("div");
 
+
+  this.remove = document.createElement("button");
+  this.remove.setAttribute("data-id", "");
+
+  for (card of cards) {
+    card.remove.addEventListener("click", e => removeBook(e));
+  }
+
   this.card.appendChild(this.title);
   this.card.appendChild(this.author);
   this.card.appendChild(this.pages);
   this.card.appendChild(this.isRead);
+  this.card.appendChild(this.remove);
 
   this.title.classList.add("title");
   this.author.classList.add("author");
   this.pages.classList.add("pages")
   this.isRead.classList.add("isRead");
+  this.remove.classList.add("remove");
+
+  this.remove.textContent = "Remove";
 }
 
 function addBookToLibrary(title, author, pages, isRead) {
@@ -74,6 +88,7 @@ function resetCards() {
   cards = [];
 }
 
+
 function displayBooks() {
   for (let i = 0; i < myLibrary.length; i++) {
     cards.push(new Card());
@@ -81,7 +96,21 @@ function displayBooks() {
     cards[i].author.textContent = `Author: ${myLibrary[i].author}`;
     cards[i].pages.textContent = `${myLibrary[i].pages} pages long`;
     cards[i].isRead.textContent = `${myLibrary[i].isRead ? 'Read' : 'Unread'}`;
+    cards[i].remove.setAttribute("data-id", myLibrary[i].id);
   }
+}
+
+function removeBook(e) {
+  const id = e.target.getAttribute("data-id");
+  console.log(id);
+  for (let i = 0; i < myLibrary.length; i++) {
+    if (myLibrary[i].id === id) {
+      myLibrary.splice(i, 1);
+      break
+    }
+  }
+
+  e.target.parentNode.remove();
 }
 
 function userAddBooks(e) {
