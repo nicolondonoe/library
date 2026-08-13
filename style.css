@@ -109,6 +109,20 @@ body {
   align-content: center; */
 }
 
+.header-container {
+  background-color: var(--alabaster-grey);
+  display: flex;
+  justify-content: center;
+}
+
+.header {
+  font-size: 40px;
+  display: fixed;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  color: var(--ink-black);
+}
+
 .card {
   background-color: var(--alabaster-grey);
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.158);
@@ -160,9 +174,18 @@ button {
   transition: transform 0.5s ease;
 }
 
-button.remove {
+button.remove, button.change-read-status {
   background-color: var(--remove-red);
   scale: 0.8;
+}
+
+button.change-read-status {
+  background-color: var(--dusk-blue);
+}
+
+.card-button-container {
+  display: flex;
+  justify-content: center;
 }
 
 /* button.add-books {

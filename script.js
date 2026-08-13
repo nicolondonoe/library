@@ -18,6 +18,18 @@ function Book(title, author, pages, isRead) {
   this.id = crypto.randomUUID();
 }
 
+Book.prototype.toggleRead = function() {
+    if (this.isRead === false) {
+      return this.isRead = true;
+    }
+    else {
+      return this.isRead = false;
+    }
+}
+
+
+console.log(Book.prototype);
+
 function Card() {
   if (!new.target) {
     throw Error("Can't call constructor function without 'new'");
@@ -32,28 +44,41 @@ function Card() {
   this.isRead = document.createElement("div");
 
 
+  this.buttonContainer = document.createElement("div");
+  this.changeReadBtn = document.createElement("button");
   this.remove = document.createElement("button");
   this.remove.setAttribute("data-id", "");
-
-
+  this.changeReadBtn.setAttribute("data-id", "");
 
   this.card.appendChild(this.title);
   this.card.appendChild(this.author);
   this.card.appendChild(this.pages);
   this.card.appendChild(this.isRead);
-  this.card.appendChild(this.remove);
+  this.card.appendChild(this.buttonContainer);
+  this.buttonContainer.appendChild(this.remove);
+  this.buttonContainer.appendChild(this.changeReadBtn);
 
   this.title.classList.add("title");
   this.author.classList.add("author");
   this.pages.classList.add("pages")
   this.isRead.classList.add("isRead");
   this.remove.classList.add("remove");
+  this.buttonContainer.classList.add("card-button-container");
+  this.changeReadBtn.classList.add("change-read-status");
 
   this.remove.textContent = "Remove";
+  this.changeReadBtn.textContent = "Toggle Read";
 
 
   this.remove.addEventListener("click", e => removeBook(e));
-  
+  this.changeReadBtn.addEventListener("click", function(e) {
+    const bookIndex = getBookIndexById(e);
+    console.log(bookIndex)
+    myLibrary[bookIndex].toggleRead();
+    console.log(myLibrary[bookIndex]);
+    resetCards();
+    displayBooks();
+  });
 
 }
 
@@ -63,8 +88,7 @@ function addBookToLibrary(title, author, pages, isRead) {
   console.log(myLibrary);
 }
 
-addBookToLibrary('Foundation', 'Isaac Asimov', 400, true);
-addBookToLibrary('Dune', 'Frank Herbert', 900, false);
+
 
 function resetCards() {
   for (card of cards) {
@@ -82,6 +106,18 @@ function displayBooks() {
     cards[i].pages.textContent = `${myLibrary[i].pages} pages long`;
     cards[i].isRead.textContent = `${myLibrary[i].isRead ? 'Read' : 'Unread'}`;
     cards[i].remove.setAttribute("data-id", myLibrary[i].id);
+    cards[i].changeReadBtn.setAttribute("data-id", myLibrary[i].id);
+  }
+}
+
+function getBookIndexById(e) {
+  const id = e.target.getAttribute("data-id");
+  console.log(id);
+  for (let i = 0; i < myLibrary.length; i++) {
+    if (myLibrary[i].id === id) {
+      return i;
+      break
+    }
   }
 }
 
@@ -91,13 +127,16 @@ function removeBook(e) {
   for (let i = 0; i < myLibrary.length; i++) {
     if (myLibrary[i].id === id) {
       myLibrary.splice(i, 1);
-      break
     }
   }
 
-  e.target.parentNode.remove();
+  e.target.parentNode.parentNode.remove();
   console.log(myLibrary);
 }
+
+
+addBookToLibrary('Foundation', 'Isaac Asimov', 400, true);
+addBookToLibrary('Dune', 'Frank Herbert', 900, false);
 
 displayBooks(myLibrary);
 
