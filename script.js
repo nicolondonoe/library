@@ -7,24 +7,6 @@ const form = document.forms.newBook;
 const closeBtn = document.querySelector("#closeBtn");
 const dialog = document.getElementById('add-book');
 
-
-closeBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  let title = form.title.value;
-  let author = form.author.value;
-  let pages = form.pages.value;
-  let isRead = form.isRead.checked;
-
-  addBookToLibrary(title, author, pages, isRead);
-  resetCards();
-  displayBooks();
-  dialog.close();
-});
-
-addBooksButton.addEventListener("click", () => dialog.showModal());
-
-
-
 function Book(title, author, pages, isRead) {
   if (!new.target) {
     throw Error("Can't call constructor function without 'new'");
@@ -53,9 +35,7 @@ function Card() {
   this.remove = document.createElement("button");
   this.remove.setAttribute("data-id", "");
 
-  for (card of cards) {
-    card.remove.addEventListener("click", e => removeBook(e));
-  }
+
 
   this.card.appendChild(this.title);
   this.card.appendChild(this.author);
@@ -70,6 +50,11 @@ function Card() {
   this.remove.classList.add("remove");
 
   this.remove.textContent = "Remove";
+
+
+  this.remove.addEventListener("click", e => removeBook(e));
+  
+
 }
 
 function addBookToLibrary(title, author, pages, isRead) {
@@ -111,14 +96,31 @@ function removeBook(e) {
   }
 
   e.target.parentNode.remove();
-}
-
-function userAddBooks(e) {
-  body.classList.toggle("darken");
+  console.log(myLibrary);
 }
 
 displayBooks(myLibrary);
 
-// cards[1].card.remove();
+addBooksButton.addEventListener("click", () => dialog.showModal());
+
+closeBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  if (form.title.value === '' || form.author.value === ''
+    || form.pages.value === '') {
+  }
+  else {
+    let title = form.title.value;
+    let author = form.author.value;
+    let pages = form.pages.value;
+    let isRead = form.isRead.checked;
+
+    addBookToLibrary(title, author, pages, isRead);
+    resetCards();
+    displayBooks();
+    dialog.close();
+  }
+
+
+});
 
 
