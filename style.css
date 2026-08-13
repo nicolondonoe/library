@@ -94,7 +94,6 @@ body {
 .wrapper {
   display: flex;
   flex-direction: column;
-  height: 100%;
   align-items: stretch;
   justify-content: center;
 }
@@ -110,7 +109,7 @@ body {
 }
 
 .header-container {
-  background-color: var(--alabaster-grey);
+  /* background-color: var(--alabaster-grey); */
   display: flex;
   justify-content: center;
 }
@@ -120,7 +119,7 @@ body {
   display: fixed;
   font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
-  color: var(--ink-black);
+  color: var(--alabaster-grey);
 }
 
 .card {
