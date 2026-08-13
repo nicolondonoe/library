@@ -89,6 +89,10 @@ h6 {
 body {
   height: 100vh;
   background-color: var(--ink-black);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
 }
 
 .wrapper {
@@ -120,6 +124,18 @@ body {
   font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
   color: var(--alabaster-grey);
+}
+
+footer {
+  display: flex;
+  flex: 0 1 auto;
+  justify-content: center;
+  gap: 15px;
+}
+
+footer > div {
+  color: var(--alabaster-grey);
+  font-size: 17px;
 }
 
 .card {
