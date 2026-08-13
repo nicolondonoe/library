@@ -159,10 +159,11 @@ footer > div {
   top: 0;
   left: 0;
   border-radius: 15px 0 0 15px;
+  transition: transform 0.2s ease;
 }
 
 .card:hover {
-  transform: scale(1.02);
+  transform: scale(1.01);
 }
 
 .card > div {
@@ -203,16 +204,13 @@ button.change-read-status {
   justify-content: center;
 }
 
-/* button.add-books {
-  grid-column: 1 / span 2;
-  grid-row: last;
-  width: max-content;
-  justify-self: center;
-} */
-
-button:hover, button:focus {
+button:hover {
   transform: scale(1.06);
   cursor: pointer;
+}
+
+button.remove:hover, button.change-read-status:hover, button#closeBtn:hover {
+  transform: scale(1.02);
 }
 
 dialog {
